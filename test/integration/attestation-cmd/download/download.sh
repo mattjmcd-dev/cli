@@ -24,7 +24,7 @@ fi
 
 digest="5ddb1d4d013a44c2e5df027867c0d4161383eb7c16e569a86384af52bfe09a65"
 attestation_filename="sha256:$digest.jsonl"
-if [ "$os" == "windows-latest" ]; then
+if [[ "$os" == *windows* ]]; then
   echo "Running the test on Windows."
   echo "Build the expected filename accordingly"
   attestation_filename="sha256-$digest.jsonl"
