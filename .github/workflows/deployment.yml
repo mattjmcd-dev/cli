@@ -36,7 +36,7 @@ on:
       
 jobs:
   validate-tag-name:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Validate tag name format
         env:
@@ -49,7 +49,7 @@ jobs:
           fi
   linux:
     needs: validate-tag-name
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     environment: ${{ inputs.environment }}
     if: contains(inputs.platforms, 'linux')
     timeout-minutes: 20
@@ -93,7 +93,7 @@ jobs:
 
   macos:
     needs: validate-tag-name
-    runs-on: macos-latest
+    runs-on: blacksmith-6vcpu-macos-15
     environment: ${{ inputs.environment }}
     if: contains(inputs.platforms, 'macos')
     timeout-minutes: 20
@@ -199,7 +199,7 @@ jobs:
  
   windows:
     needs: validate-tag-name
-    runs-on: windows-2022
+    runs-on: blacksmith-4vcpu-windows-2025
     environment: ${{ inputs.environment }}
     if: contains(inputs.platforms, 'windows')
     timeout-minutes: 20
@@ -317,7 +317,7 @@ jobs:
             dist/*.msi
 
   release:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs: [linux, macos, windows]
     environment: ${{ inputs.environment }}
     if: inputs.release
